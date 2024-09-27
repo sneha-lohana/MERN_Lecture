@@ -145,3 +145,7 @@ console.log('!false --> ', !false); // true
 console.log('!0 --> ', !0); // true
 console.log("!'' --> ", !''); // true
 console.log("!!null --> ", !!null); // false
+
+// Ternary Operator ? :
+let greet = time > 12 ? 'Good Afternoon' : 'Good Morning';
+console.log(greet);
