@@ -1,0 +1,104 @@
+body{
+    width: 100%;
+    margin: 0 auto;
+    background-image: linear-gradient(#43b0f6, #fff);
+    color: #444e54;
+    height: 110vh;
+}
+main{
+    margin-top: 40px;
+}
+.search-form {
+    margin: 20px 25px;
+    padding: 5px 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid #332b1d;
+    font-family: "Oxygen Mono", monospace;
+    font-size: 12px;
+}
+button {
+    display: inline-block;
+    border: 2px solid #332b1d;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: "Oxygen Mono", monospace;
+    font-size: 12px;
+    background-color: #d0cd8f;
+}
+button:hover {
+    background-color: #b9b559;
+}
+.city-title {
+    max-width: 300px;
+    font-size: 32px;
+    font-weight: bold;
+}
+.current-weather {
+    margin-top: 50px;
+}
+.temp-title {
+    font-size: 140px;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+}
+.todays-info {
+    margin: 15px 0px 15px 20px;
+}
+p, ul {
+    font-family: "Oxygen Mono", monospace;
+    font-size: 15px;
+}
+h2 {
+    font-size: 48px;
+}
+.side-info {
+    position: relative;
+    left: 12px;
+    top: 55px;
+}
+li {
+    list-style: none;
+}
+span {
+    font-size: 20px;
+}
+.hourly-forecast {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+.forecast-card{
+    border: 1px solid #589ecd;
+    box-shadow: 0px 0px 12px 2px #43b0f6;
+    border-radius: 24px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.weather {
+    margin-top: 2px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+h3 {
+    font-size: 22px;
+    margin-bottom: -18px;
+}
+footer {
+    position: relative;
+    bottom: -100px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: #0a95c9;
+}
+a:hover {
+    color: #007bff;
+}
