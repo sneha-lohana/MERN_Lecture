@@ -1,0 +1,61 @@
+React JS is a library or a framework?
+-> React is a library. React website tells us it a library. https://react.dev/
+
+What is the difference between library and framework?
+
+**Library**
+-> Library is a collection of functions or API or API functions. 
+-> It helps us in reducing writing of code. It provides utility or helper function
+-> JQuery is also a library that we can use how ever we want. 
+-> You can create your own structure or functions
+-> We are the driving factor for library
+-> library is lite weight, small websites, web applications (mid level applications)
+
+**Framework**
+-> Framework has a fixed structure
+-> Framework is the driving factor as how to use the code
+-> We have to follow the structure
+-> Enterprise and major applications use Framework
+-> folder structure and other aspects.
+
+ReactJS is more popular that Angular.
+
+https://react.dev/learn/start-a-new-react-project
+React website says "If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community."
+
+Database connectivity is not supported in React. We can use fetch function to call Database.
+
+React JS is front end, that calls only the API. There is no dependency between frontend and backend.
+
+Angular is also ment for front end. We cacn't connect Angular or React.
+
+Lets create our first React App:
+index1.html
+
+**React Installation**
+We have 2 ways to install react:
+** Way 1:
+
+Goto https://react.dev/learn/installation > Goto Try React locally and copy the script from the HTML.
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+** Way 2:
+-> first Install Node JS: https://nodejs.org/en/download/package-manager/current
+-> Download the LTS version and install
+-> Open CMD > node -v > if you are getting the version the installation of node is successful.
+-> Now and install react and react-dom through CMD > npm install react react-dom
+-> Now add the path of react-development.js and react-dom.development.js into script src.
+
+React is a component based library. Any task that needs to be performed is supposed to be performed in form of a component.
+
+Easiest way to connect is all HTML elements are simulations to React components.
+
+components should be small so that we can easily maintain them.
+
+components can be created in 2 ways:
+1. Function based component
+2. Class based component
+
+--- ReactJS - Introduction - 33:20
