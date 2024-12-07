@@ -63,8 +63,6 @@ Add some div id=root. This will be used to load react. the root element will be 
 To create an element in React we use
 React.createElement("Tag Name", "Options - className, id, style or attributes of the tag",  "Value")
 
-Add Browser extension : React Developer Tools for inspecting the code.
-
 ****************************************
 
 React is a component based library. Any task that needs to be performed is supposed to be performed in form of a component.
@@ -110,6 +108,10 @@ function button(){
 When you render the above button you see a small button without the Click Me text, reason is React gets confused that it needs to render normal HTML tag.
 
 Now when u change the small b to capital B the correct component will be rendered.
+
+*** We want to display variable content in H1 tag using JSX ***
+-> Add new function HelloUser in index3.html (notes in index3.html)
+
 
 **** How to create a website from scratch in React *****
 What will be required to create react app
@@ -163,4 +165,73 @@ Now lets understand the structure of the project files:
 
 -> Now we will modify the component App in app.js and add the necessary code.
 
+-------------- ReactJS components, useState V2 ---------------------
+********* Virtual DOM vs Actual DOM ********************
+Now to understand Virtal DOM and Actual DOM we will modify the following files in my-first-app
+-> public > index.html > add 2 div with id root1 and root2
+-> src > index.js > comment the const root and add the code.
+
+Actual DOM is normal JavaScript code
+Virtal DOM is react JS code
+
+We added the below code:
+// Actual DOM code
+const root1 = document.getElementById("root1");
+
+// Virtual DOM code
+const root2 = ReactDOM.createRoot(document.getElementById("root2"));
+
+root1.innerHTML = `
+<div>
+  <h1>Hello JS!</h1>
+</div>
+`;
+
+root2.render(
+<div>
+  <h1>Hello ReactJS!</h1>
+</div>
+);
+
+
+Now we will add input tag and using pre tag display the current time:
+root1.innerHTML = `
+<div>
+  <h1>Hello JS!</h1>
+  <input />
+  <pre>${new Date().toLocaleTimeString()}</pre>
+</div>
+`;
+
+root2.render(
+<div>
+  <h1>Hello ReactJS!</h1>
+  <input />
+  <pre>{new Date().toLocaleTimeString()}</pre>
+</div>
+);
+
+But we have to refresh the code every time to update the time. 
+
+For making auto refresh available we will have to create setInterval call back function.
+
+setInterval(()=> {
+  root1.innerHTML = `
+<div>
+  <h1>Hello JS!</h1>
+  <input />
+  <pre>${new Date().toLocaleTimeString()}</pre>
+</div>
+`;
+
+root2.render(
+<div>
+  <h1>Hello ReactJS!</h1>
+  <input />
+  <pre>{new Date().toLocaleTimeString()}</pre>
+</div>
+);
+}, 1000);
+
+Now if you type data in both the textboxes you will observe the actual dom is loosing the data when the time gets modified.
 

@@ -30,13 +30,23 @@
             return <button>Click Me!</button>;
         }
 
+        function HelloUser(){
+            const username = prompt("Enter your Name:");
+            // return <h1>Hello {username||"Sneha"}!</h1>;
+            // This step of adding the username to the html tag is called data binding.
+            // We can add other aspect like shown below.
+            return <h1>Hello {username}! {10+2}  {Math.random()}</h1>
+            // This is also called String Interpolation as everything returned by a function is a string.
+        }
+
         const root = ReactDOM.createRoot(document.getElementById("root"));
         // root.render(React.createElement(Hello));
 
         // Shorter way to render with React JSX
         // root.render(<Hello />);
         // root.render(<button />);
-        root.render(<Button / >);
+        // root.render(<Button / >);
+        root.render(<HelloUser />);
     </script>
     
 </body>
