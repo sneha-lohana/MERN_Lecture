@@ -1,3 +1,4 @@
+------------------ ReactJS Introduction V1 -----------------------
 React JS is a library or a framework?
 -> React is a library. React website tells us it a library. https://react.dev/
 
@@ -27,9 +28,9 @@ Database connectivity is not supported in React. We can use fetch function to ca
 
 React JS is front end, that calls only the API. There is no dependency between frontend and backend.
 
-Angular is also ment for front end. We cacn't connect Angular or React.
+Angular is also ment for front end. We can't connect Angular or React.
 
-Lets create our first React App:
+Lets create our first React App from the perspective we are modifying an existing website:
 index1.html
 
 **React Installation**
@@ -42,11 +43,29 @@ Goto https://react.dev/learn/installation > Goto Try React locally and copy the 
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
 ** Way 2:
--> first Install Node JS: https://nodejs.org/en/download/package-manager/current
--> Download the LTS version and install
--> Open CMD > node -v > if you are getting the version the installation of node is successful.
--> Now and install react and react-dom through CMD > npm install react react-dom
+-> first Install Node JS: https://nodejs.org/en/download/package-manager/current > Package Manager> select LTS (long term support) and follow the steps in VS terminal as given in website.
+-> Then run the command in terminal
+npm install react react-dom
+
+(npm stands for Node Package Manager)
 -> Now add the path of react-development.js and react-dom.development.js into script src.
+-> Ensure to add the node_modules folder to .gitignore
+
+If you get an error while executing the above command in terminal, check the Execution policy modify and then execute the above commands
+-> Get-ExecutionPolicy
+-> Get-ExecutionPolicy -List
+-> Get-ExecutionPolicy -Scope CurrentUser
+-> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+Add some div id=root. This will be used to load react. the root element will be required for react to work.
+
+To create an element in React we use
+React.createElement("Tag Name", "Options - className, id, style or attributes of the tag",  "Value")
+
+Add Browser extension : React Developer Tools for inspecting the code.
+
+****************************************
 
 React is a component based library. Any task that needs to be performed is supposed to be performed in form of a component.
 
@@ -58,4 +77,90 @@ components can be created in 2 ways:
 1. Function based component
 2. Class based component
 
---- ReactJS - Introduction - 33:20
+Add index2.html and connect with React
+
+***** Function based component****
+-> In react the function name should be start with capital letter it written in Pascal case.
+
+
+As react hooks have been introduced function based components are more famous in comparison to class based components
+
+**********
+Now if we had to generate the forecast card (reference to the weather app project) directly in react or lets say a complete section of the HTML code needs to be developed in React it would be difficult. This is where ***React JSX** is introduced. 
+
+JSX stands for JavaScript XML.
+
+For understanding JSX we need babel library. https://babeljs.io/ > click on setup > select in the browser 
+
+1. Now create index3.html
+2. Add boilerplate code, div with id="root" and JS scripts for react.
+3. copy script from babeljs.io
+4. Add React function based component
+5. Add the react element using React.createElement(Hello) and check if the o/p is available --- It will display error.
+6. Now add type="text/babel" in script tag
+
+Babel will convert the HTML code to React code. 
+
+Now lets understand why using Pascal case is important in React. Lets write a function based to create a button.
+
+function button(){
+            return <button>Click Me!</button>;
+        }
+
+When you render the above button you see a small button without the Click Me text, reason is React gets confused that it needs to render normal HTML tag.
+
+Now when u change the small b to capital B the correct component will be rendered.
+
+**** How to create a website from scratch in React *****
+What will be required to create react app
+1. Node JS
+2. VS code
+3. NPM (Node Package Manager) / NPX (Node Package execute)
+4. Internet
+
+
+1. Goto ReactJS Projects
+2. To create a react application in terminal run the following command.
+npx create-react-app my-first-app
+
+(npx stands for Node Package eXecute)
+2. it will confirm if the packages can be installed.
+3. Once the packages are installed and app is created, you can observe the folder structure created. 
+4. then u can execute 
+-> cd my-first-app
+-> npm start
+
+If you get any errors related to versioning then run the below command
+-> npm config set legacy-peer-deps true
+and create the app again.
+
+After starting the application if you get error can't find module then
+-> Run npm install --save-dev ajv@^7
+
+Here --save means  installed modules are added as a dependency by default
+--save-dev means install and save the package under devDependencies
+@ (at the rate) means which version
+~ (tilde) means install exact version
+^ (caret) means install latest patch version
+
+-> then run npm start
+
+Now you code should run fine and landing page should load.
+
+Now lets understand the structure of the project files:
+1. It contains node_modules it will install node file in every new app that you create.
+2. public folder: the html page that is visible on the browser all the files are available in this folder. 
+-> favicon.ico is icon available on the title bar
+-> index.html: the html code it contains div id="root" for react DOM root container.
+-> logo images
+-> robots.txt - is for crawling and SEO purposes.
+3. src folder: 
+-> index.js - is the starter file where the react gets started
+-> index.css - to add the CSS 
+-> app.test.js - it is used to write automated test functions. So we don't need the file we will delete it.
+-> app.js - this contains the component that are loaded in index.js
+-> app.css - this contains the css for the components developed and designed in app.js
+
+-> Now we will modify the component App in app.js and add the necessary code.
+
+

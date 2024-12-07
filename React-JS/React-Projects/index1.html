@@ -7,12 +7,27 @@
 </head>
 <body>
     <h1>My first React App</h1>
+
+    <div id="root">
+
+    </div>
     <!-- Way one access of react -->
     <!-- <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
 
     <!-- Way two access of react -->
-     <script src="../../../../../Users/PC/node_modules/react/umd/react.development.js"></script>
-     <script src="../../../../../../Users/PC/node_modules/react-dom/umd/react-dom.development.js"></script>
+     <script src="../../node_modules/react/umd/react.development.js"></script>
+     <script src="../../node_modules/react-dom/umd/react-dom.development.js"></script>
+
+     <script>
+        // creating react element
+        const h1 = React.createElement('h1', null, "Hello React!");
+        // Get DOM element by id
+        const container = document.getElementById("root");
+        // create root for virtual DOM using actual DOM element
+        const root = ReactDOM.createRoot(container);
+        // render our react element in the virtaul DOM root
+        root.render(h1);
+     </script>
 </body>
 </html>
