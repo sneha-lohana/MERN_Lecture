@@ -1,0 +1,12 @@
+Assignment 1
+
+We have created a counter-app that allows us to increment the value by one 
+on button click.
+
+Using the same Button component you need to render 4 buttons that perform:
+1. +1
+2. +5
+3. +10
+4. -1
+
+Based on the +number the addition should be performed.

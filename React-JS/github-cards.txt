@@ -1,0 +1,20 @@
+In this project we are going to use the Github API to load the user data,
+and search for users.
+
+URL : https://api.github.com/
+in this we will use: https://api.github.com/search/users?q={query}{&page,per_page,sort,order}
+here query -> username 
+page -> which page
+per_page -> users per page
+
+1. Create a new react project by the name github-cards
+2. Install react extension in visual code studio.
+3. Create the project structure as:
+-> index.js
+-> App.js
+-> CardList.js -> use shortcut rfc to create React Function Component.
+-> Card.js
+
+4. Execute the code and check.
+
+--- Github Cards Part1 - 13:53 mins

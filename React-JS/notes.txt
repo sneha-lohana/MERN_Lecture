@@ -517,3 +517,30 @@ function Display({message}){
 
 Now when you click on the button the increment doesn't happen.
 
+Now using the props we pass the handleClick event as shown below:
+function App(){
+  const [counter, setCounter] = useState(0)
+  const increamentCounter = () => {
+    setCounter(counter+1);
+  }
+  return(
+  <>
+    <Button onIncrement={increamentCounter}/>
+    <Display message={counter} val="React"/>
+	  </>
+  )
+}
+
+function Button(props){
+  // Keep the handleClick we will need it
+  const handleClick = () => {props.onIncrement();}
+  // instead of counter add +1. 
+  return <button onClick={handleClick}>+1</button>
+}
+
+
+Now create the project structure such that:
+-> index.js
+-> App.js
+-> Display.js
+-> Button.js
