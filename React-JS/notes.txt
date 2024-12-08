@@ -22,52 +22,66 @@ What is the difference between library and framework?
 ReactJS is more popular that Angular.
 
 https://react.dev/learn/start-a-new-react-project
-React website says "If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community."
+React website says "If you want to build a new app or a new website 
+fully with React, we recommend picking one of the React-powered 
+frameworks popular in the community."
 
-Database connectivity is not supported in React. We can use fetch function to call Database.
+Database connectivity is not supported in React. We can use fetch 
+function to call Database.
 
-React JS is front end, that calls only the API. There is no dependency between frontend and backend.
+React JS is front end, that calls only the API. There is no 
+dependency between frontend and backend.
 
 Angular is also ment for front end. We can't connect Angular or React.
 
-Lets create our first React App from the perspective we are modifying an existing website:
+Lets create our first React App from the perspective we are modifying 
+an existing website:
 index1.html
 
 **React Installation**
 We have 2 ways to install react:
 ** Way 1:
 
-Goto https://react.dev/learn/installation > Goto Try React locally and copy the script from the HTML.
+Goto https://react.dev/learn/installation > Goto Try React locally and 
+copy the script from the HTML.
 
 <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
 ** Way 2:
--> first Install Node JS: https://nodejs.org/en/download/package-manager/current > Package Manager> select LTS (long term support) and follow the steps in VS terminal as given in website.
+-> first Install Node JS: https://nodejs.org/en/download/package-manager/current 
+> Package Manager> select LTS (long term support) and follow the steps 
+in VS terminal as given in website.
 -> Then run the command in terminal
 npm install react react-dom
 
 (npm stands for Node Package Manager)
--> Now add the path of react-development.js and react-dom.development.js into script src.
+-> Now add the path of react-development.js and react-dom.development.js 
+into script src.
 -> Ensure to add the node_modules folder to .gitignore
 
-If you get an error while executing the above command in terminal, check the Execution policy modify and then execute the above commands
+If you get an error while executing the above command in terminal, check 
+the Execution policy modify and then execute the above commands
 -> Get-ExecutionPolicy
 -> Get-ExecutionPolicy -List
 -> Get-ExecutionPolicy -Scope CurrentUser
 -> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
-Add some div id=root. This will be used to load react. the root element will be required for react to work.
+Add some div id=root. This will be used to load react. the root 
+element will be required for react to work.
 
 To create an element in React we use
-React.createElement("Tag Name", "Options - className, id, style or attributes of the tag",  "Value")
+React.createElement("Tag Name", "Options - className, id, style 
+or attributes of the tag",  "Value")
 
 ****************************************
 
-React is a component based library. Any task that needs to be performed is supposed to be performed in form of a component.
+React is a component based library. Any task that needs to be 
+performed is supposed to be performed in form of a component.
 
-Easiest way to connect is all HTML elements are simulations to React components.
+Easiest way to connect is all HTML elements are simulations to 
+React components.
 
 components should be small so that we can easily maintain them.
 
@@ -78,36 +92,47 @@ components can be created in 2 ways:
 Add index2.html and connect with React
 
 ***** Function based component****
--> In react the function name should be start with capital letter it written in Pascal case.
+-> In react the function name should be start with capital letter it 
+written in Pascal case.
 
 
-As react hooks have been introduced function based components are more famous in comparison to class based components
+As react hooks have been introduced function based components are more 
+famous in comparison to class based components
 
 **********
-Now if we had to generate the forecast card (reference to the weather app project) directly in react or lets say a complete section of the HTML code needs to be developed in React it would be difficult. This is where ***React JSX** is introduced. 
+Now if we had to generate the forecast card (reference to the weather 
+app project) directly in react or lets say a complete section of the 
+HTML code needs to be developed in React it would be difficult. This 
+is where ***React JSX** is introduced. 
 
 JSX stands for JavaScript XML.
 
-For understanding JSX we need babel library. https://babeljs.io/ > click on setup > select in the browser 
+For understanding JSX we need babel library. https://babeljs.io/ > 
+click on setup > select in the browser 
 
 1. Now create index3.html
 2. Add boilerplate code, div with id="root" and JS scripts for react.
 3. copy script from babeljs.io
 4. Add React function based component
-5. Add the react element using React.createElement(Hello) and check if the o/p is available --- It will display error.
+5. Add the react element using React.createElement(Hello) and check 
+if the o/p is available --- It will display error.
 6. Now add type="text/babel" in script tag
 
 Babel will convert the HTML code to React code. 
 
-Now lets understand why using Pascal case is important in React. Lets write a function based to create a button.
+Now lets understand why using Pascal case is important in React. 
+Lets write a function based to create a button.
 
 function button(){
             return <button>Click Me!</button>;
         }
 
-When you render the above button you see a small button without the Click Me text, reason is React gets confused that it needs to render normal HTML tag.
+When you render the above button you see a small button without the 
+Click Me text, reason is React gets confused that it needs to render 
+normal HTML tag.
 
-Now when u change the small b to capital B the correct component will be rendered.
+Now when u change the small b to capital B the correct component will 
+be rendered.
 
 *** We want to display variable content in H1 tag using JSX ***
 -> Add new function HelloUser in index3.html (notes in index3.html)
@@ -127,7 +152,8 @@ npx create-react-app my-first-app
 
 (npx stands for Node Package eXecute)
 2. it will confirm if the packages can be installed.
-3. Once the packages are installed and app is created, you can observe the folder structure created. 
+3. Once the packages are installed and app is created, you can observe
+the folder structure created. 
 4. then u can execute 
 -> cd my-first-app
 -> npm start
@@ -150,24 +176,30 @@ Here --save means  installed modules are added as a dependency by default
 Now you code should run fine and landing page should load.
 
 Now lets understand the structure of the project files:
-1. It contains node_modules it will install node file in every new app that you create.
-2. public folder: the html page that is visible on the browser all the files are available in this folder. 
+1. It contains node_modules it will install node file in every new app 
+that you create.
+2. public folder: the html page that is visible on the browser all the 
+files are available in this folder. 
 -> favicon.ico is icon available on the title bar
--> index.html: the html code it contains div id="root" for react DOM root container.
+-> index.html: the html code it contains div id="root" 
+for react DOM root container.
 -> logo images
 -> robots.txt - is for crawling and SEO purposes.
 3. src folder: 
 -> index.js - is the starter file where the react gets started
 -> index.css - to add the CSS 
--> app.test.js - it is used to write automated test functions. So we don't need the file we will delete it.
+-> app.test.js - it is used to write automated test functions. 
+So we don't need the file we will delete it.
 -> app.js - this contains the component that are loaded in index.js
--> app.css - this contains the css for the components developed and designed in app.js
+-> app.css - this contains the css for the components developed 
+and designed in app.js
 
 -> Now we will modify the component App in app.js and add the necessary code.
 
 -------------- ReactJS components, useState V2 ---------------------
 ********* Virtual DOM vs Actual DOM ********************
-Now to understand Virtal DOM and Actual DOM we will modify the following files in my-first-app
+Now to understand Virtal DOM and Actual DOM we will modify 
+the following files in my-first-app:
 -> public > index.html > add 2 div with id root1 and root2
 -> src > index.js > comment the const root and add the code.
 
@@ -213,7 +245,8 @@ root2.render(
 
 But we have to refresh the code every time to update the time. 
 
-For making auto refresh available we will have to create setInterval call back function.
+For making auto refresh available we will have to create setInterval 
+call back function.
 
 setInterval(()=> {
   root1.innerHTML = `
@@ -233,5 +266,254 @@ root2.render(
 );
 }, 1000);
 
-Now if you type data in both the textboxes you will observe the actual dom is loosing the data when the time gets modified.
+Now if you type data in both the textboxes you will observe 
+the actual dom is loosing the data when the time gets modified.
+
+The reason is the div tag of the root1 is getting rendered every second, 
+where as in root2 only pre is getting rendered.
+
+React will create copy of the actual DOM and the copy is called virtual DOM. 
+React will compare the actual DOM with Virtual DOM, it will check for changes 
+and then it will replace the data. Thats why only pre tag is rendered. 
+This concept is called tree reconcilation.
+
+JS will show many performance issues in such senario whereas ReactJS will 
+perform much better.
+
+****** Counter App *******
+1. Create counter app using the npx command
+2. We will boostrap the project by removing all the unwanted files -  
+in src > keep only index.js
+3. Remove all the additonal codes from index.js and keep the below code
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <div>Hello</div>
+);
+
+In the counter app we add a button and the counter will increase.
+4. Create a component Button and render it
+function Button(){
+  let counter=0;
+  return <button>Button clicked for {counter} times</button>
+}
+
+root.render(<Button />);
+5. We will handle an event  onclick like JavaScript and check if the code works
+function addCounter(){
+  console.log(Math.random());
+}
+function Button(){
+  let counter=0;
+  return <button onClick={addCounter}>Button clicked for {counter} times</button>
+}
+
+6. IF you add addCounter() it won't execute on click
+7. You can create anonymous function or arrow function to perform the same task.
+8. Now working on increaing the counter
+
+  let counter=0;
+  const setCounter = () => {
+    counter=counter+1;
+    console.log(counter);
+  }
+  return <button onClick={setCounter}>Button clicked for {counter} times</button>
+
+In this you see that the counter is increasing and being displayed in the log. 
+But the value of number in the button text doesn't change. This is due to the 
+virtual DOM, the reason the render happens only once. So lets confirm single 
+render.
+
+9. To confirm the same lets add log render in the code before the return statement
+console.log("render");
+  return <button onClick={setCounter}>Button clicked for {counter} times</button>
+
+Now execute the code and check the result in the console log.
+
+10. So to modify the data on the button text we will use useState.
+First lets understand what is useState? 
+-> Comment the counter, setCounter code
+-> add useState() function above console.log("render");
+-> Every function that starts with use keyword is called React hooks
+-> useState manages the state of our component
+-> useState returns a stateful value and a function to update it.
+
+Now lets add the below code
+  const [counter, setCounter] = useState(0)
+  const handleClick = () => {
+    setCounter(counter+1);
+  }
+  // console.log("render");
+  return <button onClick={handleClick}>Button clicked for {counter} times</button>
+11. Now lets understand what is happening. Uncomment the render log.
+the moment you call the setCounter function of the useState
+function the full component is rendered again. 
+Also the statful value i.e. counter is maintained in the memory
+seperately.
+
+-------------- Props & components V3 ---------------
+We will improvise the counter app project
+1. Make the copy of index.js and rename it to index1.js
+2. Remove all the comments and additional content from index.js
+3. Now we will create a new component that will display value of counter.
+function Display(){
+  return <div>...</div>
+}
+4. Now we will render the Display
+root.render(<Button />);
+root.render(<Display/>);
+When you write the above code you see we are getting only Display not button
+5. Lets add logs to check if both are getting displayed.
+function Button(){
+  const [counter, setCounter] = useState(0)
+  console.log("Button");
+  const handleClick = () => {
+    setCounter(counter+1);
+  }
+  // console.log("render");
+  return <button onClick={handleClick}>Button clicked for {counter} times</button>
+}
+function Display(){
+  console.log("Display");
+  return <div>...</div>
+}
+
+In the above case we see only Display is printed in log, reason:
+-> The first time you call root.render, React will clear all the 
+existing HTML content inside the React root before rendering the 
+React component into it.
+-> If you call render on the same root more than once, React will update 
+the DOM as necessary to reflect the latest JSX you passed. React will decide 
+which parts of the DOM can be reused and which need to be recreated by 
+“matching it up” with the previously rendered tree. Calling render on the 
+same root again is similar to calling the set function on the root component: 
+React avoids unnecessary DOM updates.
+
+6. So now lets see if we write the below code what will happen:
+root.render(<Button /><Display />);
+// root.render(<Display/>);
+When you execute the above code you will get an error, you can see the error on 
+terminal and browser.
+
+7. To solve this error we have multiple ways we will see all of them:
+7.1. First way is to create an array and the value to render.
+root.render([<Button />, <Display />]);
+
+So this allow us to solve the problem and both Button and Display are visible
+in the browser. But we also get a warning, we see how to solve it shortly.
+Using arrays to display components is not a convinent way.
+
+8. We can use the below code to avoid arrays and the warning:
+root.render(
+  <div>
+    <Button/>
+    <Display/>
+  </div>
+)
+
+the code works perfectly but we have an issue we have an extra div tag in the
+hierarchy.
+
+9. To remove the additional div we can use React.Fragment instead of div tag
+and execute
+root.render(
+  <React.Fragment>
+    <Button/>
+    <Display/>
+  </React.Fragment>
+)
+
+React.Fragment acts like an imaginary tag and will not create an additional
+hierarchy in the root element.
+
+10. we also use blank tag to serve the purpose.
+root.render(
+  <>
+    <Button/>
+    <Display/>
+  </>
+)
+
+So this is how we can display multiple components
+
+11. Lets comment the logs in Button and Display
+
+12. Now we add a new component App() which will return Button and Display
+function App(){
+  return(
+  <>
+    <Button/>
+    <Display/>
+  </>
+  )
+}
+
+root.render(<App />);
+
+This will display the same output, we will understand shortly why we have done
+this.
+
+12. We want to display the counter value from the button component in display 
+component. but values of two diffrent components can't be passed directly. 
+So we shall move the state to the App Component from the button component
+function App(){
+  const [counter, setCounter] = useState(0)
+  const handleClick = () => {
+    setCounter(counter+1);
+  }
+  return(
+  <>
+    <Button/>
+    <Display/>
+  </>
+  )
+}
+
+When you move your state to Parent Component we call this Uplifting your state 
+from child to Parent. Now we will modify the Button Component as below.
+
+function Button(){
+  // Keep the handleClick we will need it
+  const handleClick = () => {}
+  // instead of counter add +1
+  return <button onClick={handleClick}>+1</button>
+}
+
+We are hard coding the counter value for now we will make it generic later on.
+
+13. The counter value is available with App Component we can send the value to
+button using JSX DOM properties. The way an HTML element has attributes in the similar
+way we can create properties for React JSX has properties. Add the below code in App
+Component
+
+<Display message="hi" val="React"/>
+
+Now how will these properties will be visible in the Display Component. So every component
+has a default input called properties, we need to invoke that in our 
+Component function as shown below: 
+
+function Display(props){
+  console.log(props);
+  return <div>...</div>
+}
+
+Now when you execute the code you will see both message and val are displayed. Now
+modify the return statement and check the output
+
+function Display(props){
+  console.log(props);
+  return <div>{props.message}</div>
+}
+
+Now you can change the message to counter
+<Display message={counter} val="React"/>
+
+Instead of using full props we can destructuring and work with props
+function Display({message}){
+  return <div>{message}</div>
+}
+
+Now when you click on the button the increment doesn't happen.
 
