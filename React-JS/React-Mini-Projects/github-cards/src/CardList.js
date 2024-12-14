@@ -1,11 +1,11 @@
-import React from 'react'
-import Card from './Card'
+import Card from './Card';
 
-export default function CardList() {
+export default function CardList({profiles}) {
   return (
     <>
-        <Card />
-        <Card />
+      {profiles.map(profile => {
+          return <Card {...profile} key={profile.id} />
+        })}
     </>
   )
 }

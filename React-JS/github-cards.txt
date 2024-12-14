@@ -17,4 +17,396 @@ per_page -> users per page
 
 4. Execute the code and check.
 
---- Github Cards Part1 - 13:53 mins
+********** Working on Card ************
+
+Whenever you are working on project, you should divide the project into 
+multiple components. We have done that. Now when you start development 
+you need to ensure to work on the smallest component first.
+Why? You will be able to derive the parent, So that the flow can be 
+easily decided. Child component is not dependent on data, it should focus 
+on displaying data that is provided by the parent component.
+
+Initially you can start with hardcoded data, then you can implement
+dynamic content gradually. Always do reverse engineering, because 
+that will allow to have clarity and a sense of acheivement. Because you 
+will be able to see the progress.
+
+-> from the api -> we will copy 2 users data into array of users. check testData
+-> from the copied data we shall keep only login, id, avatar_url and html_url
+-> Create a const profile with single value to design the card.
+-> Add the below code:
+export default function Card() {
+  // loading 1st data
+  const profile = testData[0];
+  return (
+    <div>
+      <img src={profile.avatar_url} alt={profile.login}/>
+      <div>{profile.login}</div>
+      <a href={profile.html_url} target='_blank'>Github Link</a>
+    </div>
+  )
+}
+-> you will get a warning, to avoid warning add rel="noreferrer" this is for 
+security purposes.
+
+		**** Adding Styling to the Card ****
+You can do it using inline style or external style:
+
+1. Inline Styling:
+style is a JSX expression so we need to create an object of style. So we will have
+double { {} } curly brackets.
+Outer  {} is for JSX expression and inner {} is for object of style
+<img src={profile.avatar_url} alt={profile.login} style={ {width:'150px', borderRadius: '50%'} }/>
+
+2. External Styling:
+-> Add Card.css file
+-> We need to add class name to the main div. as class is a keyword we will use
+className=value in JSX
+<div className='profile-info'>
+
+-> Now perform the CSS creation in inspect:
+display: flex;
+gap: 10px;
+margin: 0.5 rem;
+border: 1px solid grey;
+padding: 0.25 rem;
+border-radius: 4px;
+
+-> Now add this to Card.css
+.profile-info{
+    display: flex;
+    gap: 10px;
+	margin: 0.5rem;
+	border: 1px solid grey;
+	padding: 0.25rem;
+	border-radius: 4px;
+}
+-> import Card.css in Card.js
+import './Card.css';
+
+-> Now let add another div to keep the User name and git.
+<div>
+	<div>{profile.login}</div>
+	<a href={profile.html_url} target='_blank' rel="noreferrer">Github Link</a>
+</div>
+
+********** Working on CardList **********
+-> As we have understood that the Child will not have data, it will display
+the data that is given by the Parent component. Therefore we will remove the 
+testData variable from Card.js and move it to CardList.js
+-> Now the data can be passes as properties to the Card Component from CardList.
+	**Card.js
+export default function Card(props) {
+  // loading 1st data
+  const profile = props.profile;
+	**CardList.js
+export default function CardList() {
+  return (
+    <>
+        <Card profile={testData[0]} />
+        <Card profile={testData[1]} />
+    </>
+  )
+}
+Now execute and check the data is updated.
+
+	**** Creation of mock up file for testData ********
+please understand the orginal data will be coming from an API and for
+that the data will have to be moved out of CardList to it Parent. 
+Therefore, we will create a json file for the test data.
+-> create test-data.json file and copy the array into the file
+-> Now import test-data.json into CardList.js
+import testData from './test-data.json';
+
+Now lets check in how many ways the data can be shared from CardList to Card:
+1st Way using the property name profile:
+** CardList.js ***
+ <Card profile={testData[0]} />
+** Card.js **
+console.log(props);
+
+2nd way using the spread operator while sharing the data as property:
+** CardList.js ***
+<Card {...testData[0]} />
+
+So when you see the console you will see keys are properties in the output.
+This is commonly used by many coders.
+
+** Card.js ***
+const profile = props;
+
+** Now we will display multiple values in the cards. **
+So how do we create loop in JSX. We can't write for loop directly in JSX.
+
+Lets add the profiles from json file into a variable:
+const profiles = testData;
+
+now using map function we will loop the data.
+{profiles.map(profile => {
+          return <Card {...profile} />
+        })}
+		
+** Now you will see that there is an error, now lets see how to solve the error.
+and what is the error.
+
+Each child should have a unique key prop. => meaning the json data can work on filter
+That is possible with the help of unique key values
+So now how can we solve this problem, is by using map function there is return value index.
+That will be re utilized to be passed as key in the Card component
+
+{profiles.map((profile, index) => {
+          return <Card {...profile} key={index} />
+        })}
+
+** Now lets install chrome extension React Developer Tools
+Restart chrome and check inspect, in the additional options select components
+so you can check the key
+
+Current we have used the index as the unique key but ideal situation will be use
+a unique value in the key, for eg we can use the id from the git api data for the same
+
+{profiles.map(profile => {
+          return <Card {...profile} key={profile.id} />
+        })}
+		
+*********** Now we will create pagination for our profiles ************
+1. Lets add 2 buttons and their respective functions in CardList.js:
+  const onPrev = () => {}
+  const onNext = () => {}
+
+  return (
+    <>
+      <button onClick={onPrev}>Prev</button>
+      <button onClick={onNext}>Next</button>
+	  
+2. Now lets paginate the sheet with the help of slice function on the json data.
+
+  export default function CardList() {
+  let start = 0;
+  let end = 3;
+  let profiles = testData.slice(start, end);
+  // const profiles = testData;
+
+  const onPrev = () => {}
+  const onNext = () => {
+    start = 3; 
+    end = 6;
+    profiles = testData.slice(start, end);
+  };
+
+  console.log("rendering");
+
+So with this you will observe single page is loaded but next page is not modified
+This is due to virtual DOM. So now we will have to modify the code and use
+useState.
+
+let [profiles, setProfile] = useState(testData.slice(start, end));
+  // const profiles = testData;
+
+  const onPrev = () => {}
+  const onNext = () => {
+    start = 3; 
+    end = 6;
+    setProfile(testData.slice(start, end));
+  };
+  
+ Now in the above code we have done basic coding and the values are hard coded 
+ thats why the data is changing for 6 records in total.
+ 
+ ** Now lets make this dynamic
+ Lets say we have 11 records in total.
+ Page Size - or number of records per Page is 3.
+ We also need pagenumbers
+ We will have to make the calculations of the start and end values:
+ 
+ pagenumber - 0
+ start = 0
+ end = 3
+
+pagenumber - 1
+start = 3
+end = 6
+
+pagenumber - 2
+start = 6
+end = 9
+
+pagenumber - 3
+start = 9
+end = 11
+
+Explain slice function rule.
+
+formula will be 
+end = start + pageSize
+start = pagenumber * pagesize
+
+Now lets implement the above understaning into code.
+So below code will be added into CardList.js
+
+1st remove all the unwanted code.
+and add variables pageSize and pagenumber and necessary code as below"
+export default function CardList() {
+  const pageSize = 3;
+  let pageNumber = 0; 
+  let [profiles, setProfile] = useState(testData.slice(0, pageSize));
+  
+  const onPrev = () => {}
+  const onNext = () => {
+	pageNumber +=1;
+    const start = pageNumber * pageSize; 
+    const end = start + pageSize;
+    setProfile(testData.slice(start, end));
+  };
+	
+2nd now execute and check what is the issue.
+We observe the next button works only one time.
+now lets check the senario by adding the log
+
+pageNumber +=1;
+console.log(pageNumber);
+
+Execute the code and check what happens?
+Why pageNumber is showing 1 everytime we click on Next button?
+
+What is the issue?
+
+PageNumber is a normal variable which is not stored in the state.
+Therfore when setProfile is executed the PageNUmber is reset to zero.
+
+What should we do to get the updated pageNumber value.
+
+1. you may say we can make the pageNumber a global variable but if suppose 
+there is another Component that is using pageNumber and modifies the 
+pageNumber to 10 then Next button will behave weirdly. It will directly 
+show 10th Page instead of zero.
+
+The solution is using useState.
+const [pageNumber, setPageNumber] = useState(0);
+setPageNumber(pageNumber+1);
+
+Lets also add the code for onPrev function: we just modify + to -
+const onPrev = () => {
+    setPageNumber(pageNumber-1);
+    console.log(pageNumber);
+    const start = pageNumber * pageSize; 
+    const end = start + pageSize;
+    setProfile(testData.slice(start, end));
+  };
+
+NOw lets execute and check do we get the output as per need or 
+we still have any issues.
+If you observe on load we have the pageNumber zero rendered twice and 
+when clicked on prev button we get blank values.
+
+Any guess why?
+
+This is because the useState 1st updates the DOM and then calls 
+the setPageNumber function.
+
+So the solution is we can use a different hook - useRef which means
+use Reference, it creates a mutable reference object which doesn't have 
+a update function on value. 1st lets see what gets displayed in the 
+pageNumber.
+
+Add below code and comment useState, setPageNumber function call in onNext and
+onPrev
+
+const pageNumber = useRef(0);
+console.log("rendering", pageNumber);
+
+So u see we get an object with current key wit value zero
+
+Now the question is how will we assign the values the to PageNumber using
+useRef.
+
+So we will assign the value simply to current as shown below.
+pageNumber.current -=1; in onPrev
+pageNumber.current +=1; in onNext
+
+NOw everywhere u need to change pageNumber to pageNumber.current for
+calculating start and end.
+
+const start = pageNumber.current * pageSize; 
+
+What exactly is useRef doing? it will update the state but wont rerender the
+component.
+
+**** Optimize your code. remove repeatative code ****
+Add the below arrow function 
+
+const changeProfiles = () => {
+    const start = pageNumber.current * pageSize; 
+    const end = start + pageSize;
+    setProfile(testData.slice(start, end));
+  }
+  
+remove the 3 lines of the code from onPrev and onNext and add function call
+changeProfiles();
+
+What is the difference between useState and useRef? (INTERVIEW Q)
+
+useRef hook will not re-render the component if you change the value,
+whereas useState will re-render the component once value of the state changes
+useRef will update the state value immediately
+useState will update the state value immediately, 
+but we get the value of the state on next render of component
+
+You can work on disabling the Prev and Next button with logic -- assignment.
+
+*************** Now we will implement filtering or searching *******************
+To understand searching easily we will make a copy if CardList and remove
+pagination code from it. We will only keep profiles and keep full userData
+instead of sliced data.
+
+-- check
+
+So now we will need SearchUser component. Add a new file SearchUser.js
+rfc + tab - for component creation
+
+Now in App.js above CardList we will invoke the SearchUser. 
+
+-- check
+
+As the rule says all the data should be passed from the parent 
+component we need to move profiles to App.js
+
+Move the let [profiles] from CardList.js to App.js and modify it as follows
+let [profiles, setProfile] = useState(testData);
+
+Add profiles to CarList component properties
+<CardList profiles={profiles}/>
+
+in CardList.js add destructuring of properties
+export default function CardList({profiles}) {
+
+*** For searching any element we need search form ***
+Add the form element into the SearchUser.js 
+
+export default function SearchUser() {
+  return (
+    <form>
+        <input type='text'/>
+        <button>Search</button>
+    </form>
+  )
+}
+
+Here we have a challenge, that is the page gets refreshed everytime you 
+click the button. thats the default attribute of the HTML form.
+
+We will add handleSubmit function in the form.
+
+const handleSubmit = () => {
+        console.log("handle submit");
+    }
+  return (
+    <form onSubmit={handleSubmit}>
+
+Use preserve log to check that the log handle submit will be visible.
+
+But what is the understanding, The page is getting refreshed. We 
+are losing the meaning of the ReactJs single page application.
+The main use is without submitting the data must be refreshed.
+
+The searched data will be passed 
