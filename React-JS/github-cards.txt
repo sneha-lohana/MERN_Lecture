@@ -409,4 +409,38 @@ But what is the understanding, The page is getting refreshed. We
 are losing the meaning of the ReactJs single page application.
 The main use is without submitting the data must be refreshed.
 
+What to do to stop the default behaviour of HTML element? We have seen 
+this in JavaScript events lecture.
+
+We use preventDefault function.
+
+So when we handle an event the 1st parameter we get is the event.
+
+const handleSubmit = (event) => {
+        console.log(event);
+    }
+	
+-- check
+
+SyntheticBasedEvent is an React object. It is like a wrapper or a parent event 
+for all the events in HTML.
+
+const handleSubmit = (event) => {
+        console.log(event);
+        event.preventDefault();
+    }
+	
+-- check
+
+So you will see the text box value is not refreshed. That means the default 
+behaviour has been disabled.
+
+Now the question is how we will get the input button value for further
+usage.
+
+We can get it using useRef hook and useState hook, we will see both the 
+ways.
+
+
+
 The searched data will be passed 
