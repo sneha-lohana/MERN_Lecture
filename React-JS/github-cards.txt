@@ -441,6 +441,220 @@ usage.
 We can get it using useRef hook and useState hook, we will see both the 
 ways.
 
+******* USEREF Hook ***********
 
+const username = useRef(" ");
+  return (
+    <form onSubmit={handleSubmit}>
+        <input type='text' ref={username}/>
+        <button>Search</button>
+    </form>
+  )
 
-The searched data will be passed 
+ALso add console.log in the handleSubmit function.
+console.log(username)
+
+-- check
+now add
+
+console.log(username.current.value)
+
+Now we have the following problems
+1. If we initialize username with a value that wont be visible
+const username = useRef("Sneha");
+
+-- check
+
+2. If the form is small with one or 2 elements useRef hook is good 
+to use, but if there are more values then we will have to create 
+multiple variables which is not a right way of usage. 
+Here useRef is acting similar to document.getElementByID()
+
+********** SOLUTION **************
+UseState Hook
+
+const [username, setUserName] = useState("");
+        <input type='text' value={username}/>
+
+-- check
+
+1. You will get a warning -- read
+
+const [username, setUserName] = useState("Sneha");
+-- check
+
+2. try changing the value it wont change.
+the reason is this is an uncontrolled element
+
+** WHat is a controlled and uncontrolled element?
+Uncontrolled elements are HTML elements. Anything that is not
+directly controlled by ReactJs are called uncontrolled.
+
+this is cz of the warning - now the solution is in the warning
+itself, add an onChnage event.
+
+<input type='text' value={username} onChange={handleChange}/>
+const handleChange = (event) => {}
+
+-- check
+now try refreshing and updating the value.
+
+the value is not getting updated.
+
+const handleChange = (event) => {
+    console.log(event.target.value);
+}
+
+-- check
+
+NOw you will see the data is getting updated but its not updated
+in input element.
+
+WHY is this happening?
+
+We are invoking onChange event we are printing the updated value.
+But in the input the value property is not changed.
+
+add log(render) inside the component
+
+-- check
+
+Component is not re-rendered as the State is not updated.
+
+const handleChange = (event) => {
+    setUserName(event.target.value);
+    console.log(event.target.value);
+  }
+
+-- check (tell importance of render log)
+
+Now the data is getting updated
+** Now we need to pass the input value from SearchUser to App
+so that the profiles can be updated.
+
+So as we have seen we can define the function and pass it as a
+property into the JSX
+
+**App.js
+  const searchUsers = (username) => {
+    console.log(username);
+  }
+  
+      <SearchUser onSearch={searchUsers}/>
+**SearchUser.js
+export default function SearchUser(props) {
+  ...
+    event.preventDefault();
+    props.onSearch(username);
+ }
+-- check
+The searched data will be passed from CHild to Parent
+and username will be displayed
+
+Now we apply filter function.
+
+const searchUsers = (username) => {
+    console.log(username);
+    const users = testData.filter(profile => {
+      return profile.login.includes(username);
+    });
+    setProfile(users);
+  }
+  
+-- check
+the above code is case sensitive. to remove the case sensitivity
+add tolowerCase.
+
+return profile.login.toLowerCase().includes(username.toLowerCase());
+
+-- check
+
+**********************************************
+Now understanding accessiblity of files:
+Anything in src is not accessible thru url:
+http://localhost:3000/test-data.json
+
+http://localhost:3000/logo512.png	
+
+Public files will be accessible not src.
+
+For API call understanding lets move test-data.json to public folder
+http://localhost:3000/test-data.json
+
+Now the data will be visible.
+
+Now lets call the api using the fetch function.
+fetch function is a promise.
+
+function fetctUsers(){
+  fetch("http://localhost:3000/test-data.json")
+  .then(res => res.json()) 
+  .then(data => console.log(data))
+}
+
+fetctUsers();
+
+--- check
+
+Error will be visible
+remove import of userData
+and replace the variable with empty array []
+
+let [profiles, setProfile] = useState([]);
+
+  const searchUsers = (username) => {
+    console.log(username);
+    const users = [].filter(profile => {
+
+-- check 
+
+also remove initialized username from SearchUser.js
+
+const [username, setUserName] = useState("");
+
+-- check
+
+Now add the fetctUsers function code inside the App component
+
+then in the fetctUsers function add the code.
+.then(data => setProfiles(data))
+
+-- check
+
+Now if you observe there is a problem:
+1. If you observe network the json is called multiple times
+as if it is a infinte loop
+
+Lets comment the fetctUsers code.
+
+Why is it going into infinte user? Remember the render component.
+
+explain the useState effect.
+This is called the SideEffect.
+
+**** SOLUTION *****
+
+useEffect Hook
+
+useEffect(()=> {
+    fetch("http://localhost:3000/test-data.json")
+    .then(res => res.json()) 
+    .then(data => setProfiles(data))
+  })
+  
+-- check
+
+Even after this the code is going into infinte loop
+
+useEffect has 2nd parameter has [state, props].
+default value is [state, props] which means in every change invoke
+the useEffect. SO add empty array []
+
+useEffect(()=> {
+    fetch("http://localhost:3000/test-data.json")
+    .then(res => res.json()) 
+    .then(data => setProfiles(data))
+  }, [])
+  
+-- check
+
