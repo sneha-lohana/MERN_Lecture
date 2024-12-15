@@ -30,7 +30,7 @@ function App() {
 
   const searchUsers = (username) => {
     console.log(username);
-    const users = [].filter(profile => {
+    const users = profiles.filter(profile => {
       return profile.login.toLowerCase().includes(username.toLowerCase());
     });
     setProfiles(users);

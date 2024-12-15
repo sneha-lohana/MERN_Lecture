@@ -602,10 +602,6 @@ and replace the variable with empty array []
 
 let [profiles, setProfile] = useState([]);
 
-  const searchUsers = (username) => {
-    console.log(username);
-    const users = [].filter(profile => {
-
 -- check 
 
 also remove initialized username from SearchUser.js
