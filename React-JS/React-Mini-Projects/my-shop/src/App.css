@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+.App nav{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.App .spacer{
+  flex: 1;
+}
+
+.App nav a.active{
+  background-color: #3293e8;
+  color: white;
+  padding: 4px 10px;
+  text-decoration: none;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

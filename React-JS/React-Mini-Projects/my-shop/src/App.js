@@ -1,14 +1,20 @@
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import './App.css';
-import ProductList from './components/ProductList';
 
 function App() {
   return (
     <div className="App">
       <header>
-        My-Shop
+        <nav>
+          <h1>My-Shop</h1>
+          <div className='spacer'></div>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/products">Products</NavLink>
+        </nav>
       </header>
       <main>
-        <ProductList />
+        <Outlet/>
       </main>
     </div>
   );
