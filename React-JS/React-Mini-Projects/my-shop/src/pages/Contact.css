@@ -1,0 +1,16 @@
+.contact-form{
+    width: 600px;
+    margin: 0 auto;
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+}
+
+.form-control input{
+    border: 1px solid #959595;
+    border-radius: 4px;
+    padding: 0.5rem;
+}

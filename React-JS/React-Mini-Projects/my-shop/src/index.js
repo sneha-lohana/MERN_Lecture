@@ -4,9 +4,12 @@ import App from './App';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
-import Contact from './pages/Contact';
+// import Contact from './pages/Contact';
 import Product from './pages/Product';
 import ProductDetail from './pages/ProductDetail';
+import { ThemeContext, ThemeProvider } from './contexts/ThemeContext';
+
+const Contact = React.lazy(() => import('./pages/Contact'));
 
 const router = createBrowserRouter([
     {
@@ -24,7 +27,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/contact',
-                element: <Contact />
+                element: (
+                    <React.Suspense>
+                        <Contact />
+                    </React.Suspense>
+                ) 
             },
             {
                 path: '/products',
@@ -33,11 +40,18 @@ const router = createBrowserRouter([
             {
                 path: "/products/:id",
                 element: <ProductDetail />
+            },
+            {
+                path: '*',
+                element: (<>
+                <h1>Page Not Found</h1></>)
             }
         ]
     }
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <RouterProvider router={router}/>
+    <ThemeProvider>
+        <RouterProvider router={router}/>
+    </ThemeProvider>
 );

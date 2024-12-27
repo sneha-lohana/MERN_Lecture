@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Home() {
+  const contextValue = useContext(ThemeContext);
+      console.log("Home Page -- > " , contextValue);
   return (
     <div>
         <h1>Home</h1>
