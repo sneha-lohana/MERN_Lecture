@@ -1,0 +1,18 @@
+Craete todo-app
+install react-router-dom
+install axios
+
+
+
+Redux is built it on the concepts of Context API and 
+Reducer. It will manage to store all the data in a 
+simlified way.
+
+Precap Reducer
+
+When you are delaing with an ERP system which needs State Management on a large scale we use State Libraries like Redux.
+
+Search React State Management Libraries.
+
+TO Do project is already created we are going to reutilize it and implement Redux.
+
