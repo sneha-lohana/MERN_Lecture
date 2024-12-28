@@ -3,7 +3,6 @@ install react-router-dom
 install axios
 
 
-
 Redux is built it on the concepts of Context API and 
 Reducer. It will manage to store all the data in a 
 simlified way.
@@ -15,4 +14,150 @@ When you are delaing with an ERP system which needs State Management on a large 
 Search React State Management Libraries.
 
 TO Do project is already created we are going to reutilize it and implement Redux.
+
+Lets understand HOw it works?
+Sycn flow
+    - Store - is database in memory
+    - STore has Reducers - Reducer func are used to perform CRUD
+        - Insert update delete
+        - Reducer func can't perform the task of fetch or Read
+        - Read data or fetch data is done by Selector
+        - Selectors job is to fetch the data from State or STore
+    - State can be considered as a table in the database
+
+Install redux:
+
+npm i redux @reduxjs/toolkit react-redux
+
+Install redux devlopment tools
+IN chrome extensions search for Redux DevTools
+
+or install via terminal
+npm i -D @redux-devtools/core
+
+Lets now work on the project. TO work on Redux you need to a store
+    - in src > Add new file > Name it store.js
+    - Add the below code
+        import { configureStore } from '@reduxjs/toolkit'
+
+        export const store = configureStore({
+        reducer: {},
+        })
+    - NOw provide the store to the index.js
+        <Provider store={store}>
+          <App />
+        </Provider>
+    - Now we see the implementation of Redux in the Counter app
+        - In Src > Components > Add a new file > counter.js
+        - rfc + tab
+        - Add below code in counter.js
+            return (
+                <div>
+                    <button>+1</button>
+                    0
+                    <button>+3</button>
+                </div>
+            )
+        - Now create a route path in index.js. Add below code
+            {
+                path: '/counter',
+                element: <Counter />
+            }
+        - In app.js add a link to create the menu Counter
+            <NavLink to='/counter'>Counter</NavLink>
+        -- check the redux dev tools.
+        - We understood that the state are tables, so redux
+        allows you to maintain tables in form of Slices
+        - Therefore we add src > features > todos> New file
+        > todosSlice.js
+        - Add the below code:
+            export const todosSlice = createSlice({
+                name: 'todos',
+                initialState: {
+                    count: 0
+                },
+                reducers: {},
+                extraReducers(builder) {}
+            });
+        - With this you have created the todos table or state
+        - Todos State gives you 3 things 1st actions. 
+        Actions are based on reducer func. 
+        2nd reducer. 3rd Selector code
+
+            // actions
+            export const {} = todosSlice.actions;
+
+            // reducer
+            export default todosSlice.reducer;
+        - Now we need to pass this state into the store.js
+            import todosReducer from './features/todos/todosSlice';
+            export default configureStore({
+                reducer: {
+                    todos: todosReducer
+                }
+            });
+        -- check code and reduc Dev tools
+        - Now we will write the code to increment the counter by 1
+        - In todosSlice.js under reducer we will add
+            reducers: {
+                increment: (state, action) => {
+                    return {
+                        ...state,
+                        count: state.count + 1
+                    }
+                }
+            }
+        - Add it to the actions:
+            export const { increment } = todosSlice.actions;
+        - Now we need to dispatch the action. We can do it by 
+        passing it in counter.js
+            import { useDispatch } from 'react-redux';
+            import { increment } from '../features/todos/todosSlice';
+
+            const dispatch = useDispatch();
+
+            <button onClick={() => dispatch(increment())}>+1</button>
+        
+        -- check Redux DevTools
+        - Now we want to display the counter on the screen
+        we understood for fetching values we need selector
+        - Add below code in todosSlice.js
+            // selectors
+            export const selectCount = (state) => state.todos.count;
+        - counter.js
+            const count = useSelector(selectCount);  
+
+            <button onClick={() => dispatch(increment())}>+1</button>
+            {count}
+        -- Check
+
+        -- increment by 3 code as task
+        -- In todosSlice.js
+        reducers: {
+            increment: (state, action) => {
+                return {
+                    ...state,
+                    count: state.count + 1
+                }
+            },
+            incrementByCount: (state, action) => {
+                return {
+                    ...state,
+                    count: state.count + action.payload
+                }
+            }
+        }
+
+        export const { increment, incrementByCount } = todosSlice.actions;
+
+        - counter.js
+            {count}
+            <button onClick={() => dispatch(incrementByCount(3))}>+3</button>
+Async flow
+    - Middleware - is a thunk
+
+Create a Thunk: 
+1st Parameter is a action Name or Thunk Name
+2nd Parameter is a func which will call API and return the response
+
 
